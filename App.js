@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
 import * as ImagePicker from 'expo-image-picker';
+import * as FileSystem from 'expo-file-system';
 
 export default function App() {
 
