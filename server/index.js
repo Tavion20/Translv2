@@ -22,6 +22,36 @@ app.post( '/translate' , (req,res) => {
 }
 );
 
+app.post( '/filetranslate' , (req,res) => {
+
+    const { source, target, data } = req.body;
+    console.log(req.body);
+    res.status(200).send({
+        result: `Translated data from ${source} to ${target}`
+    })
+}
+);
+
+app.post( '/fileimg' , (req,res) => {
+
+    const { source, target, data } = req.body;
+    console.log(req.body);
+    res.status(200).send({
+        result: `Translated data from ${source} to ${target}`
+    })
+}
+);
+
+app.post( '/fileaudio' , (req,res) => {
+
+    const { source, target, data } = req.body;
+    console.log(req.body);
+    res.status(200).send({
+        result: `Translated data from ${source} to ${target}`
+    })
+}
+);
+
 
 
 const port = process.env.PORT || 10000;
