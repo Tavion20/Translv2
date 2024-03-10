@@ -48,16 +48,21 @@ export default function App() {
 
   const translateFile = async () => {
     try {
+      const formData = new FormData();
+      formData.append('file', {
+        uri: fileUri.uri,
+        name: fileUri.name,
+        type: fileUri.mimeType,
+        source: "english", 
+        target: "hindi"
+      });
+      console.log(formData)
       const response = await fetch("http://192.168.0.107:10000/filetranslate", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": 'multipart/form-data',
         },
-        body: JSON.stringify({
-          source: "english",
-          target: "hindi",
-          data: fileUri,
-        }),
+        body: formData
       });
 
       if (!response.ok) {
@@ -68,8 +73,8 @@ export default function App() {
 
       setOutput(translatedFileBlob);
     } catch (error) {
-      console.error("Error:", error.message);
-      Alert.alert("Error", "Translation failed.");
+      console.error('Error:', error.message);
+      Alert.alert('Error', 'Translation failed.');
     }
   };
 
@@ -82,25 +87,30 @@ export default function App() {
     });
 
     console.log(result);
+    setImage(result.assets[0]);
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri);
+      setImage(result.assets[0]);
     }
   };
 
   const translateImage = async () => {
     try {
-      console.log(formData);
+      const formData = new FormData();
+      formData.append('img', {
+        uri: image.uri,
+        name: "image.jpg",
+        type: image.mimeType,
+        source: "english", 
+        target: "hindi"
+      });
+      console.log(formData._parts)
       const response = await fetch("http://192.168.0.107:10000/fileimg", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": 'multipart/form-data',
         },
-        body: JSON.stringify({
-          source: "english",
-          target: "hindi",
-          data: image,
-        }),
+        body: formData
       });
 
       if (!response.ok) {

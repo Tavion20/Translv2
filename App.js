@@ -46,12 +46,21 @@ export default function App() {
 
   const translateFile = async () => {
     try {
+      const formData = new FormData();
+      formData.append('file', {
+        uri: fileUri.uri,
+        name: fileUri.name,
+        type: fileUri.mimeType,
+        source: "english", 
+        target: "hindi"
+      });
+      console.log(formData)
       const response = await fetch("http://192.168.0.107:10000/filetranslate", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": 'multipart/form-data',
         },
-        body: JSON.stringify({ source: "english", target: "hindi", data: fileUri })
+        body: formData
       });
 
       if (!response.ok) {
