@@ -134,16 +134,21 @@ export default function App() {
 
   const translateAudio = async () => {
     try {
+      const formData = new FormData();
+      formData.append('audio', {
+        uri: fileUri.uri,
+        name: fileUri.name,
+        type: fileUri.mimeType,
+        source: "english", 
+        target: "hindi"
+      });
+      console.log(formData)
       const response = await fetch("http://192.168.0.107:10000/fileaudio", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": 'multipart/form-data',
         },
-        body: JSON.stringify({
-          source: "english",
-          target: "hindi",
-          data: fileUri,
-        }),
+        body: formData
       });
 
       if (!response.ok) {

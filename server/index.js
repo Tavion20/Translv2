@@ -7,6 +7,9 @@ const multer = require('multer');
 const fs = require('fs');
 const WordExtractor = require('word-extractor');
 const tesseract = require("tesseract.js")
+require('dotenv').config()
+const fetch = require('node-fetch');
+const DeepSpeech = require('deepspeech');
 
 app.use(cors());
 app.use(express.json());
@@ -95,13 +98,33 @@ app.post( '/fileimg' , upload.single('img'), async (req, res) => {
 }
 );
 
-app.post( '/fileaudio' , (req,res) => {
+app.post( '/fileaudio' , upload.single('audio'), async (req,res) => {
 
-    const { source, target, data } = req.body;
-    console.log(req.body);
-    res.status(200).send({
-        result: `Translated data from ${source} to ${target}`
-    })
+    try{
+        const audio = req.file
+        if (!audio) {
+            return res.status(400).json({ error: 'audio data not provided' });
+        }
+        console.log(audio);
+        
+        // const MODEL_PATH = 'path/to/deepspeech-0.9.3-models.pbmm';
+        // const SCORER_PATH = 'path/to/deepspeech-0.9.3-models.scorer';
+
+        // // Initialize DeepSpeech model
+        // const model = new DeepSpeech.Model(MODEL_PATH);
+        // model.enableExternalScorer(SCORER_PATH);
+
+        // const transcription = model.stt(audio.buffer);
+        // console.log('Transcription:', transcription);
+
+        res.status(200).send({
+            // result: `Translated data from ${source} to ${target}`
+        })
+    }
+    catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Internal Server Error');
+    }
 }
 );
 
