@@ -5,16 +5,24 @@ import {
   Text,
   TextInput,
   View,
+  ImageBackground,
 } from "react-native";
 import { Link, router } from "expo-router";
+import bg from "../assets/bg.png";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Home page</Text>
-      <Pressable onPress={() => router.push("test/")}>
-        <Text>Go to Test page</Text>
-      </Pressable>
+      <ImageBackground source={bg} style={styles.image}>
+        <Text style={styles.title}>Transl</Text>
+        <Pressable onPress={() => router.push("test/")}>
+          <Text
+            style={{ display: "flex", width: "fit", backgroundColor: "pink" }}
+          >
+            Go to Test pagen
+          </Text>
+        </Pressable>
+      </ImageBackground>
     </View>
   );
 }
@@ -22,8 +30,17 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    padding: "3vw",
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+  },
+  title: {
+    color: "white",
+    fontSize: 42,
+    fontWeight: "bold",
+    marginRight: "36px",
+    backgroundColor: "red",
   },
 });
