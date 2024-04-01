@@ -12,17 +12,20 @@ export default function App() {
 
   const texttranslate = async () => {
     try {
-      const response = await fetch("http://192.168.0.107:10000/translate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          source: "english",
-          target: "hindi",
-          data: translate,
-        }),
-      });
+      const response = await fetch(
+        "https://translv2-backend-fgkh.onrender.com/translate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            source: "english",
+            target: "hindi",
+            data: translate,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -49,21 +52,24 @@ export default function App() {
   const translateFile = async () => {
     try {
       const formData = new FormData();
-      formData.append('file', {
+      formData.append("file", {
         uri: fileUri.uri,
         name: fileUri.name,
         type: fileUri.mimeType,
-        source: "english", 
-        target: "hindi"
+        source: "english",
+        target: "hindi",
       });
-      console.log(formData)
-      const response = await fetch("http://192.168.0.107:10000/filetranslate", {
-        method: "POST",
-        headers: {
-          "Content-Type": 'multipart/form-data',
-        },
-        body: formData
-      });
+      console.log(formData);
+      const response = await fetch(
+        "https://translv2-backend-fgkh.onrender.com/filetranslate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          body: formData,
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -73,8 +79,8 @@ export default function App() {
 
       setOutput(translatedFileBlob);
     } catch (error) {
-      console.error('Error:', error.message);
-      Alert.alert('Error', 'Translation failed.');
+      console.error("Error:", error.message);
+      Alert.alert("Error", "Translation failed.");
     }
   };
 
@@ -97,21 +103,24 @@ export default function App() {
   const translateImage = async () => {
     try {
       const formData = new FormData();
-      formData.append('img', {
+      formData.append("img", {
         uri: image.uri,
         name: "image.jpg",
         type: image.mimeType,
-        source: "english", 
-        target: "hindi"
+        source: "english",
+        target: "hindi",
       });
-      console.log(formData._parts)
-      const response = await fetch("http://192.168.0.107:10000/fileimg", {
-        method: "POST",
-        headers: {
-          "Content-Type": 'multipart/form-data',
-        },
-        body: formData
-      });
+      console.log(formData._parts);
+      const response = await fetch(
+        "https://translv2-backend-fgkh.onrender.com/fileimg",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          body: formData,
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -135,21 +144,24 @@ export default function App() {
   const translateAudio = async () => {
     try {
       const formData = new FormData();
-      formData.append('audio', {
+      formData.append("audio", {
         uri: fileUri.uri,
         name: fileUri.name,
         type: fileUri.mimeType,
-        source: "english", 
-        target: "hindi"
+        source: "english",
+        target: "hindi",
       });
-      console.log(formData)
-      const response = await fetch("http://192.168.0.107:10000/fileaudio", {
-        method: "POST",
-        headers: {
-          "Content-Type": 'multipart/form-data',
-        },
-        body: formData
-      });
+      console.log(formData);
+      const response = await fetch(
+        "https://translv2-backend-fgkh.onrender.com/fileaudio",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          body: formData,
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
