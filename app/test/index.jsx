@@ -12,6 +12,8 @@ export default function App() {
 
   const texttranslate = async () => {
     try {
+      console.log("Sending....");
+      console.log(translate);
       const response = await fetch(
         "https://translv2-backend-fgkh.onrender.com/translate",
         {
@@ -20,9 +22,9 @@ export default function App() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            source: "english",
-            target: "hindi",
-            data: translate,
+            fromLang: "en",
+            toLang: "hi",
+            inputText: translate,
           }),
         }
       );
@@ -32,12 +34,9 @@ export default function App() {
       }
 
       const translatedText = await response.json();
+      console.log(translatedText);
 
-      if (!translatedText.hasOwnProperty("result")) {
-        throw new Error(`Invalid response format: missing 'result' property`);
-      }
-
-      setOutput(translatedText.result);
+      setOutput(translatedText.translatedText);
     } catch (error) {
       console.error("Error:", error.message);
     }
@@ -75,9 +74,9 @@ export default function App() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const translatedFileBlob = await response.text();
+      const translatedFileBlob = await response.json();
 
-      setOutput(translatedFileBlob);
+      setOutput(translatedFileBlob.translatedText);
     } catch (error) {
       console.error("Error:", error.message);
       Alert.alert("Error", "Translation failed.");
@@ -126,9 +125,9 @@ export default function App() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const translatedFileBlob = await response.text();
+      const translatedFileBlob = await response.json();
 
-      setOutput(translatedFileBlob);
+      setOutput(translatedFileBlob.translatedText);
     } catch (error) {
       console.error("Error:", error.message);
       Alert.alert("Error", "Translation failed.");
@@ -167,9 +166,9 @@ export default function App() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const translatedFileBlob = await response.text();
+      const translatedFileBlob = await response.json();
 
-      setOutput(translatedFileBlob);
+      setOutput(translatedFileBlob.translatedText);
     } catch (error) {
       console.error("Error:", error.message);
       Alert.alert("Error", "Translation failed.");
