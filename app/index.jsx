@@ -1,27 +1,60 @@
 import {
   Pressable,
-  Button,
   StyleSheet,
   Text,
-  TextInput,
   View,
   ImageBackground,
+  ScrollView,
 } from "react-native";
 import { Link, router } from "expo-router";
+import GradientText from "./utilities/GradientText";
 import bg from "../assets/bg.png";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.image}>
-        <Text style={styles.title}>Transl</Text>
-        <Pressable onPress={() => router.push("test/")}>
-          <Text
-            style={{ display: "flex", width: "fit", backgroundColor: "pink" }}
+        <ScrollView style={styles.content}>
+          {/* The title */}
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
           >
-            Go to Test pagen
-          </Text>
-        </Pressable>
+            <Pressable onPress={() => router.push("test/")}>
+              <GradientText
+                text="Transl"
+                styles={{ fontSize: 42, fontWeight: "bold", padding: 20 }}
+              />
+            </Pressable>
+          </View>
+          {/* ends */}
+
+          {/* The mid section text */}
+          <View
+            style={{
+              marginTop: 15,
+              marginBottom: 60,
+              display: "flex",
+              gap: 5,
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Text style={styles.mid_section_subtitle}>What can I</Text>
+            <Text style={[styles.mid_section_subtitle, { fontWeight: "bold" }]}>
+              Help you with?
+            </Text>
+          </View>
+          {/* ends */}
+
+          <View
+            style={{ width: "full", height: 500, backgroundColor: "pink" }}
+          ></View>
+        </ScrollView>
       </ImageBackground>
     </View>
   );
@@ -30,7 +63,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: "3vw",
   },
   image: {
     flex: 1,
@@ -40,7 +72,13 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 42,
     fontWeight: "bold",
-    marginRight: "36px",
-    backgroundColor: "red",
+    padding: 10,
+  },
+  content: {
+    padding: 30,
+  },
+  mid_section_subtitle: {
+    color: "#FFEBCA",
+    fontSize: 24,
   },
 });
