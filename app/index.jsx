@@ -34,7 +34,11 @@ export default function App() {
             <Pressable onPress={() => router.push("test/")}>
               <GradientText
                 text="Transl"
-                styles={{ fontSize: 42, fontWeight: "bold", padding: 20 }}
+                styles={{
+                  fontSize: 42,
+                  fontWeight: "bold",
+                  paddingVertical: 20,
+                }}
               />
             </Pressable>
           </View>
@@ -62,7 +66,7 @@ export default function App() {
           {/* The Input container */}
           <View style={[styles.inputContainer, { height: 480 }]}>
             <Col>
-              <Pressable onPress={() => router.push("/text/")}>
+              <Pressable onPress={() => router.push("/image/")}>
                 <Row numCols={1}>
                   <Image
                     source={require("../assets/HomePage/img.png")}
@@ -115,7 +119,7 @@ export default function App() {
           {/* end */}
         </ScrollView>
       </ImageBackground>
-      <StatusBar style="auto" />
+      <StatusBar hidden />
     </View>
   );
 }
