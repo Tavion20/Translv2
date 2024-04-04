@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Pressable,
   StyleSheet,
@@ -5,10 +6,17 @@ import {
   View,
   ImageBackground,
   ScrollView,
+  Image,
 } from "react-native";
 import { Link, router } from "expo-router";
-import GradientText from "./utilities/GradientText";
+import { StatusBar } from "expo-status-bar";
+import GradientText from "../utilities/GradientText";
 import bg from "../assets/bg.png";
+
+const Col = ({ children }) => <View style={styles.col}>{children}</View>;
+const Row = ({ numCols, children }) => {
+  return <View style={styles[`h${numCols}`]}>{children}</View>;
+};
 
 export default function App() {
   return (
@@ -51,11 +59,63 @@ export default function App() {
           </View>
           {/* ends */}
 
-          <View
-            style={{ width: "full", height: 500, backgroundColor: "pink" }}
-          ></View>
+          {/* The Input container */}
+          <View style={[styles.inputContainer, { height: 480 }]}>
+            <Col>
+              <Pressable onPress={() => router.push("/text/")}>
+                <Row numCols={1}>
+                  <Image
+                    source={require("../assets/HomePage/img.png")}
+                    contentFit="cover"
+                    style={styles.image}
+                  />
+                </Row>
+              </Pressable>
+              <Pressable onPress={() => router.push("/gesture/")}>
+                <Row numCols={1}>
+                  <Image
+                    source={require("../assets/HomePage/gesture.png")}
+                    contentFit="cover"
+                    style={styles.image}
+                  />
+                </Row>
+              </Pressable>
+              <Pressable onPress={() => router.push("/video/")}>
+                <Row numCols={1}>
+                  <Image
+                    source={require("../assets/HomePage/vid.png")}
+                    contentFit="cover"
+                    style={styles.image}
+                  />
+                </Row>
+              </Pressable>
+            </Col>
+            <View style={{ width: 15 }}></View>
+            <Col>
+              <Pressable onPress={() => router.push("/braille/")}>
+                <Row numCols={2}>
+                  <Image
+                    source={require("../assets/HomePage/braille.png")}
+                    contentFit="cover"
+                    style={styles.image}
+                  />
+                </Row>
+              </Pressable>
+              <Pressable onPress={() => router.push("/audio/")}>
+                <Row numCols={1}>
+                  <Image
+                    source={require("../assets/HomePage/audio.png")}
+                    contentFit="cover"
+                    style={styles.image}
+                  />
+                </Row>
+              </Pressable>
+            </Col>
+          </View>
+          {/* end */}
         </ScrollView>
       </ImageBackground>
+      <StatusBar style="auto" />
     </View>
   );
 }
@@ -63,10 +123,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  image: {
-    flex: 1,
-    resizeMode: "cover",
   },
   title: {
     color: "white",
@@ -80,5 +136,33 @@ const styles = StyleSheet.create({
   mid_section_subtitle: {
     color: "#FFEBCA",
     fontSize: 24,
+  },
+  inputContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  col: {
+    flex: 1,
+  },
+  row: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 1,
+  },
+  h1: {
+    height: 140,
+    marginBottom: 20,
+  },
+  h2: {
+    height: 300,
+    marginBottom: 20,
+  },
+  image: {
+    flex: 1,
+    width: "100%",
+    backgroundColor: "#0553",
+    borderRadius: 20,
+    resizeMode: "cover",
   },
 });
