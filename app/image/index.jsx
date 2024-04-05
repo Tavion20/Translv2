@@ -75,6 +75,7 @@ export default function App() {
   };
 
   const translateImage = async () => {
+    console.log("Image Translate started..");
     try {
       const formData = new FormData();
       formData.append("img", {
@@ -86,7 +87,7 @@ export default function App() {
       });
       console.log(formData._parts);
       const response = await fetch(
-        "https://translv2-backend-fgkh.onrender.com/fileimg",
+        "https://transl-backend-0tra.onrender.com/fileimg",
         {
           method: "POST",
           headers: {
@@ -102,6 +103,7 @@ export default function App() {
 
       const translatedFileBlob = await response.json();
 
+      console.log(translatedFileBlob);
       setOutput(translatedFileBlob.translatedText);
     } catch (error) {
       console.error("Error:", error.message);

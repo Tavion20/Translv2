@@ -79,7 +79,7 @@ export default function App() {
       });
       console.log(formData);
       const response = await fetch(
-        "https://translv2-backend-fgkh.onrender.com/fileaudio",
+        "https://transl-backend-0tra.onrender.com/fileaudio",
         {
           method: "POST",
           headers: {

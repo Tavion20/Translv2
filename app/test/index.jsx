@@ -15,7 +15,7 @@ export default function App() {
       console.log("Sending....");
       console.log(translate);
       const response = await fetch(
-        "https://translv2-backend-fgkh.onrender.com/translate",
+        "https://transl-backend-0tra.onrender.com/translate",
         {
           method: "POST",
           headers: {
@@ -60,7 +60,7 @@ export default function App() {
       });
       console.log(formData);
       const response = await fetch(
-        "https://translv2-backend-fgkh.onrender.com/filetranslate",
+        "https://transl-backend-0tra.onrender.com/filetranslate",
         {
           method: "POST",
           headers: {
@@ -112,7 +112,7 @@ export default function App() {
       });
       console.log(formData._parts);
       const response = await fetch(
-        "https://translv2-backend-fgkh.onrender.com/fileimg",
+        "https://transl-backend-0tra.onrender.com/fileimg",
         {
           method: "POST",
           headers: {
@@ -153,7 +153,7 @@ export default function App() {
       });
       console.log(formData);
       const response = await fetch(
-        "https://translv2-backend-fgkh.onrender.com/fileaudio",
+        "https://transl-backend-0tra.onrender.com/fileaudio",
         {
           method: "POST",
           headers: {
