@@ -7,6 +7,7 @@ import {
   ScrollView,
   Text,
   Pressable,
+  TouchableHighlight,
   TouchableOpacity,
   Button,
   Image,
@@ -17,13 +18,19 @@ import GradientButton from "../../utilities/GradientButton";
 import * as ImagePicker from "expo-image-picker";
 import * as Clipboard from "expo-clipboard";
 import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+
 import bg from "../../assets/bg.png";
 
 export default function App() {
   const [output, setOutput] = useState(null);
   const [image, setImage] = useState(null);
   const [copiedText, setCopiedText] = useState("");
+  const [firstLang, setFirstLang] = useState("English");
+  const [secondLang, setSecondLang] = useState("Hindi");
+  const [openLangDialog, setOpenLangDialog] = useState(false);
+  const [openLangDialog2, setOpenLangDialog2] = useState(false);
 
   //Function to use Clipboard
   const copyToClipboard = async () => {
@@ -92,6 +99,18 @@ export default function App() {
     }
   };
 
+  const handleSelect1 = (item) => {
+    setFirstLang(item);
+    setOpenLangDialog(false);
+  };
+
+  const handleSelect2 = (item) => {
+    setSecondLang(item);
+    setOpenLangDialog2(false);
+  };
+
+  const lang = ["English", "Hindi", "Marathi", "Gujrati"];
+
   return (
     <View style={styles.container}>
       <StatusBar hidden />
@@ -118,10 +137,195 @@ export default function App() {
             </Pressable>
           </View>
           {/* ends */}
+
+          {/* The Change the Language button group */}
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 15,
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: 10,
+            }}
+          >
+            {/* First Lang Box */}
+            <View>
+              <TouchableHighlight
+                onPress={() => setOpenLangDialog(!openLangDialog)}
+              >
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    backgroundColor: "#111111",
+                    padding: 10,
+                    justifyContent: "space-between",
+                    borderRadius: 8,
+                    width: 125,
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "#FEB584",
+                      fontSize: 18,
+                      display: "flex",
+                      flexDirection: "column",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    {firstLang}
+                  </Text>
+                  <MaterialIcons
+                    name={!openLangDialog ? "arrow-drop-down" : "arrow-drop-up"}
+                    size={24}
+                    color="#FFEBCA"
+                    style={{ width: 25 }}
+                  />
+                </View>
+              </TouchableHighlight>
+              {openLangDialog && (
+                <View
+                  style={{
+                    position: "absolute",
+                    backgroundColor: "#111111",
+                    borderRadius: 8,
+                    padding: 10,
+                    marginTop: 50,
+                    shadowColor: "#000",
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 4,
+                    zIndex: 10,
+                  }}
+                >
+                  {lang.map((item) => {
+                    if (item != secondLang) {
+                      return (
+                        <TouchableHighlight
+                          key={item}
+                          underlayColor={"#FFEBCA"}
+                          onPress={() => handleSelect1(item)}
+                        >
+                          <View style={{ paddingVertical: 5 }}>
+                            <Text
+                              style={{
+                                color: "#FEB584",
+                                fontSize: 18,
+                                width: 105,
+                              }}
+                            >
+                              {item}
+                            </Text>
+                          </View>
+                        </TouchableHighlight>
+                      );
+                    }
+                  })}
+                </View>
+              )}
+            </View>
+
+            <TouchableOpacity
+              onPress={() => {
+                setFirstLang(secondLang);
+                setSecondLang(firstLang);
+              }}
+            >
+              <View>
+                <MaterialCommunityIcons
+                  name="swap-horizontal"
+                  size={35}
+                  color="#FFEBCA"
+                />
+              </View>
+            </TouchableOpacity>
+
+            {/* Second Lang Box */}
+            <View>
+              <TouchableHighlight
+                onPress={() => setOpenLangDialog2(!openLangDialog2)}
+              >
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    backgroundColor: "#111111",
+                    padding: 10,
+                    justifyContent: "space-between",
+                    borderRadius: 8,
+                    width: 125,
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "#FEB584",
+                      fontSize: 18,
+                      display: "flex",
+                      flexDirection: "column",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    {secondLang}
+                  </Text>
+                  <MaterialIcons
+                    name={
+                      !openLangDialog2 ? "arrow-drop-down" : "arrow-drop-up"
+                    }
+                    size={24}
+                    color="#FFEBCA"
+                    style={{ width: 25 }}
+                  />
+                </View>
+              </TouchableHighlight>
+              {openLangDialog2 && (
+                <View
+                  style={{
+                    position: "absolute",
+                    backgroundColor: "#111111",
+                    borderRadius: 8,
+                    padding: 10,
+                    marginTop: 50,
+                    shadowColor: "#000",
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 4,
+                    zIndex: 10,
+                  }}
+                >
+                  {lang.map((item) => {
+                    if (item != firstLang) {
+                      return (
+                        <TouchableHighlight
+                          key={item}
+                          underlayColor={"#FFEBCA"}
+                          onPress={() => handleSelect2(item)}
+                        >
+                          <View style={{ paddingVertical: 5 }}>
+                            <Text
+                              style={{
+                                color: "#FEB584",
+                                fontSize: 18,
+                                width: 105,
+                              }}
+                            >
+                              {item}
+                            </Text>
+                          </View>
+                        </TouchableHighlight>
+                      );
+                    }
+                  })}
+                </View>
+              )}
+            </View>
+          </View>
+          {/* end */}
+
           {/* The Image upload container */}
-          <TouchableOpacity
+          <TouchableHighlight
             onPress={pickImage}
-            style={{ display: "flex", alignItems: "center", marginTop: 40 }}
+            style={{ display: "flex", alignItems: "center", marginTop: 20 }}
           >
             <View
               style={{
@@ -149,46 +353,49 @@ export default function App() {
                 />
               )}
             </View>
-          </TouchableOpacity>
+          </TouchableHighlight>
           {/* end */}
           {/* Translate Button */}
-          <View
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginTop: 20,
-            }}
-          >
-            <Pressable
-              onPress={translateImage}
+          {!output && (
+            <View
               style={{
                 display: "flex",
                 alignItems: "center",
-                width: 130,
+                marginTop: 20,
               }}
             >
-              <GradientButton
-                text="Translate"
-                styles={{
-                  fontSize: 23,
-                  fontWeight: "bold",
-                  color: "white",
+              <Pressable
+                onPress={translateImage}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  width: 130,
                 }}
-                height={60}
-                borderRadius={10}
-              />
-            </Pressable>
-          </View>
+              >
+                <GradientButton
+                  text="Translate"
+                  styles={{
+                    fontSize: 23,
+                    fontWeight: "bold",
+                    color: "white",
+                  }}
+                  height={60}
+                  borderRadius={10}
+                />
+              </Pressable>
+            </View>
+          )}
+
           {/* end */}
           {/* Hidden Output Container */}
           {output && (
-            <View
+            <ScrollView
               style={{
                 backgroundColor: "#00000080",
                 borderRadius: 10,
                 width: "90%",
                 alignSelf: "center",
-                marginTop: 50,
+                marginTop: 30,
                 padding: 20,
               }}
             >
@@ -219,7 +426,7 @@ export default function App() {
               <Text style={{ color: "white", marginTop: 20, fontSize: 16 }}>
                 {output}
               </Text>
-            </View>
+            </ScrollView>
           )}
           {/* end */}
         </ScrollView>
