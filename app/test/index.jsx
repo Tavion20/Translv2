@@ -100,6 +100,7 @@ export default function App() {
   };
 
   const translateImage = async () => {
+    console.log("started...");
     try {
       const formData = new FormData();
       formData.append("img", {
@@ -126,7 +127,7 @@ export default function App() {
       }
 
       const translatedFileBlob = await response.json();
-
+      console.log(translatedFileBlob);
       setOutput(translatedFileBlob.translatedText);
     } catch (error) {
       console.error("Error:", error.message);

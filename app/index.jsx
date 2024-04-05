@@ -80,7 +80,7 @@ export default function App() {
                   <Image
                     source={require("../assets/HomePage/gesture.png")}
                     contentFit="cover"
-                    style={styles.image}
+                    style={[styles.image, { opacity: 1 }]}
                   />
                 </Row>
               </Pressable>

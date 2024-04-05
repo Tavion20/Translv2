@@ -31,6 +31,16 @@ export default function App() {
   const [secondLang, setSecondLang] = useState("Hindi");
   const [openLangDialog, setOpenLangDialog] = useState(false);
   const [openLangDialog2, setOpenLangDialog2] = useState(false);
+  const lang = ["English", "Hindi", "Marathi", "Gujrati"];
+  const handleSelect1 = (item) => {
+    setFirstLang(item);
+    setOpenLangDialog(false);
+  };
+
+  const handleSelect2 = (item) => {
+    setSecondLang(item);
+    setOpenLangDialog2(false);
+  };
 
   //Function to use Clipboard
   const copyToClipboard = async () => {
@@ -99,18 +109,6 @@ export default function App() {
     }
   };
 
-  const handleSelect1 = (item) => {
-    setFirstLang(item);
-    setOpenLangDialog(false);
-  };
-
-  const handleSelect2 = (item) => {
-    setSecondLang(item);
-    setOpenLangDialog2(false);
-  };
-
-  const lang = ["English", "Hindi", "Marathi", "Gujrati"];
-
   return (
     <View style={styles.container}>
       <StatusBar hidden />
@@ -127,7 +125,7 @@ export default function App() {
           >
             <Pressable onPress={() => router.push("/")}>
               <GradientText
-                text="Transl"
+                text="Image"
                 styles={{
                   fontSize: 42,
                   fontWeight: "bold",
@@ -348,7 +346,7 @@ export default function App() {
               )}
               {image && (
                 <Image
-                  source={{ uri: image }}
+                  source={{ uri: image.uri }}
                   style={{ width: 320, height: 240, borderRadius: 10 }}
                 />
               )}
