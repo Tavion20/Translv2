@@ -69,7 +69,7 @@ export default function App() {
               <Pressable onPress={() => router.push("/text/")}>
                 <Row numCols={1}>
                   <Image
-                    source={require("../assets/HomePage/audio.png")}
+                    source={require("../assets/HomePage/text1.png")}
                     contentFit="cover"
                     style={styles.image}
                   />
@@ -84,31 +84,22 @@ export default function App() {
                   />
                 </Row>
               </Pressable>
-              <Pressable onPress={() => router.push("/gesture/")}>
+              <Pressable onPress={() => router.push("/file/")}>
                 <Row numCols={1}>
                   <Image
-                    source={require("../assets/HomePage/gesture.png")}
+                    source={require("../assets/HomePage/file.png")}
                     contentFit="cover"
-                    style={[styles.image, { opacity: 1 }]}
+                    style={styles.image}
                   />
                 </Row>
               </Pressable>
             </Col>
             <View style={{ width: 15 }}></View>
             <Col>
-              <Pressable onPress={() => router.push("/video/")}>
-                <Row numCols={1}>
-                  <Image
-                    source={require("../assets/HomePage/vid.png")}
-                    contentFit="cover"
-                    style={styles.image}
-                  />
-                </Row>
-              </Pressable>
               <Pressable onPress={() => router.push("/braille/")}>
                 <Row numCols={1}>
                   <Image
-                    source={require("../assets/HomePage/braille.png")}
+                    source={require("../assets/HomePage/braille1.png")}
                     contentFit="cover"
                     style={styles.image}
                   />
@@ -117,12 +108,22 @@ export default function App() {
               <Pressable onPress={() => router.push("/audio/")}>
                 <Row numCols={1}>
                   <Image
-                    source={require("../assets/HomePage/audio.png")}
+                    source={require("../assets/HomePage/audio1.png")}
                     contentFit="cover"
                     style={styles.image}
                   />
                 </Row>
               </Pressable>
+              {/* this is the gesture */}
+              {/* <Pressable onPress={() => router.push("/gesture/")}>
+                <Row numCols={1}>
+                  <Image
+                    source={require("../assets/HomePage/gesture.png")}
+                    contentFit="cover"
+                    style={[styles.image, { opacity: 1 }]}
+                  />
+                </Row>
+              </Pressable> */}
             </Col>
           </View>
           {/* end */}
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     width: "100%",
-    backgroundColor: "#0553",
+    backgroundColor: "#fff",
     borderRadius: 20,
     resizeMode: "cover",
   },
