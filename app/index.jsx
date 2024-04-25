@@ -66,6 +66,15 @@ export default function App() {
           {/* The Input container */}
           <View style={[styles.inputContainer, { height: 480 }]}>
             <Col>
+              <Pressable onPress={() => router.push("/text/")}>
+                <Row numCols={1}>
+                  <Image
+                    source={require("../assets/HomePage/audio.png")}
+                    contentFit="cover"
+                    style={styles.image}
+                  />
+                </Row>
+              </Pressable>
               <Pressable onPress={() => router.push("/image/")}>
                 <Row numCols={1}>
                   <Image
@@ -84,6 +93,9 @@ export default function App() {
                   />
                 </Row>
               </Pressable>
+            </Col>
+            <View style={{ width: 15 }}></View>
+            <Col>
               <Pressable onPress={() => router.push("/video/")}>
                 <Row numCols={1}>
                   <Image
@@ -93,11 +105,8 @@ export default function App() {
                   />
                 </Row>
               </Pressable>
-            </Col>
-            <View style={{ width: 15 }}></View>
-            <Col>
               <Pressable onPress={() => router.push("/braille/")}>
-                <Row numCols={2}>
+                <Row numCols={1}>
                   <Image
                     source={require("../assets/HomePage/braille.png")}
                     contentFit="cover"

@@ -242,7 +242,7 @@ export default function App() {
       <ImageBackground source={bg} style={styles.image}>
         <ScrollView>
           <View>
-            <Text style={{ color: "white" }}>this is the text video page</Text>
+            <Text style={{ color: "white" }}>this is the text file page</Text>
           </View>
           <StatusBar style="auto" />
         </ScrollView>
