@@ -19,9 +19,9 @@ import GradientButton from "../../utilities/GradientButton";
 import * as ImagePicker from "expo-image-picker";
 import * as Clipboard from "expo-clipboard";
 import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
-import base64 from "base64-js";
+import Navbar from "../../utilities/Navbar";
 import bg from "../../assets/bg.png";
 
 export default function App() {
@@ -345,7 +345,7 @@ export default function App() {
                 margin: 12,
                 width: "90%",
                 borderColor: "white",
-                height: !output ? 500 : 300,
+                height: 455,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -354,8 +354,10 @@ export default function App() {
             >
               {!image && (
                 <View style={{ display: "flex", alignItems: "center" }}>
-                  <MaterialIcons name="camera-alt" size={75} color="white" />
-                  <Text style={{ color: "white" }}>Pick an Image</Text>
+                  <FontAwesome5 name="braille" size={65} color="white" />
+                  <Text style={{ color: "white", marginTop: 10 }}>
+                    Pick Braille Image
+                  </Text>
                 </View>
               )}
               {image && output == null && (
@@ -372,6 +374,7 @@ export default function App() {
               )}
             </View>
           </TouchableHighlight>
+          {output && <View style={{ height: 77 }}></View>}
           {/* end */}
           {/* Translate Button */}
           {!output && (
@@ -459,6 +462,9 @@ export default function App() {
             </ScrollView>
           )} */}
           {/* end */}
+          <View style={{ width: "85%", alignSelf: "center" }}>
+            <Navbar />
+          </View>
         </ScrollView>
       </ImageBackground>
     </View>

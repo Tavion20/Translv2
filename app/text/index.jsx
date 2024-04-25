@@ -18,7 +18,7 @@ import * as Clipboard from "expo-clipboard";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-
+import Navbar from "../../utilities/Navbar";
 import bg from "../../assets/bg.png";
 
 export default function App() {
@@ -322,7 +322,6 @@ export default function App() {
             onChangeText={setTranslate}
             value={translate}
             multiline={true}
-            placeholder="Enter the text here.."
           />
 
           {/* end */}
@@ -358,7 +357,7 @@ export default function App() {
           </View>
 
           {/* end */}
-
+          {!output && <View style={{ height: 157 }}></View>}
           {/* Hidden Output Container */}
           {output && (
             <ScrollView
@@ -370,6 +369,7 @@ export default function App() {
                 alignSelf: "center",
                 padding: 20,
                 height: 200,
+                marginBottom: 27,
               }}
             >
               <View
@@ -409,6 +409,9 @@ export default function App() {
             </ScrollView>
           )}
           {/* end */}
+          <View style={{ width: "85%", alignSelf: "center" }}>
+            <Navbar />
+          </View>
         </ScrollView>
       </ImageBackground>
     </View>

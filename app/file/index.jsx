@@ -19,6 +19,7 @@ import * as DocumentPicker from "expo-document-picker";
 import * as Clipboard from "expo-clipboard";
 import { Fontisto } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import Navbar from "../../utilities/Navbar";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -322,7 +323,7 @@ export default function App() {
                 margin: 12,
                 width: "90%",
                 borderColor: "white",
-                height: !output ? 500 : 300,
+                height: !output ? 455 : 300,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -334,6 +335,18 @@ export default function App() {
                   <Fontisto name="file-1" size={60} color="white" />
                   <Text style={{ color: "white", marginTop: 10 }}>
                     Pick a File
+                  </Text>
+                </View>
+              )}
+              {fileUri && (
+                <View style={{ display: "flex", alignItems: "center" }}>
+                  <MaterialIcons
+                    name="file-download-done"
+                    size={75}
+                    color="white"
+                  />
+                  <Text style={{ color: "white", marginTop: 10 }}>
+                    File Selected..
                   </Text>
                 </View>
               )}
@@ -414,6 +427,9 @@ export default function App() {
             </ScrollView>
           )}
           {/* end */}
+          <View style={{ width: "85%", alignSelf: "center" }}>
+            <Navbar />
+          </View>
         </ScrollView>
       </ImageBackground>
     </View>

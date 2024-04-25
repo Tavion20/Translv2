@@ -15,6 +15,7 @@ import {
 import { router } from "expo-router";
 import GradientText from "../../utilities/GradientText";
 import GradientButton from "../../utilities/GradientButton";
+import Navbar from "../../utilities/Navbar";
 import * as DocumentPicker from "expo-document-picker";
 import * as ImagePicker from "expo-image-picker";
 import * as Clipboard from "expo-clipboard";
@@ -324,7 +325,7 @@ export default function App() {
                 margin: 12,
                 width: "90%",
                 borderColor: "white",
-                height: !output ? 500 : 300,
+                height: !output ? 455 : 300,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -333,9 +334,25 @@ export default function App() {
             >
               {!fileUri && (
                 <View style={{ display: "flex", alignItems: "center" }}>
-                  <FontAwesome6 name="file-audio" size={75} color="white" />
+                  <MaterialIcons
+                    name="multitrack-audio"
+                    size={75}
+                    color="white"
+                  />
                   <Text style={{ color: "white", marginTop: 10 }}>
-                    Pick an Audio file
+                    Pick Audio file
+                  </Text>
+                </View>
+              )}
+              {fileUri && (
+                <View style={{ display: "flex", alignItems: "center" }}>
+                  <MaterialIcons
+                    name="file-download-done"
+                    size={75}
+                    color="white"
+                  />
+                  <Text style={{ color: "white", marginTop: 10 }}>
+                    Audio Selected..
                   </Text>
                 </View>
               )}
@@ -416,6 +433,9 @@ export default function App() {
             </ScrollView>
           )}
           {/* end */}
+          <View style={{ width: "85%", alignSelf: "center" }}>
+            <Navbar />
+          </View>
         </ScrollView>
       </ImageBackground>
     </View>

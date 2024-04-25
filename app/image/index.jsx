@@ -16,8 +16,10 @@ import { router } from "expo-router";
 import GradientText from "../../utilities/GradientText";
 import GradientButton from "../../utilities/GradientButton";
 import * as ImagePicker from "expo-image-picker";
+import Navbar from "../../utilities/Navbar";
 import * as Clipboard from "expo-clipboard";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -333,7 +335,7 @@ export default function App() {
                 margin: 12,
                 width: "90%",
                 borderColor: "white",
-                height: !output ? 500 : 300,
+                height: !output ? 455 : 300,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -342,8 +344,10 @@ export default function App() {
             >
               {!image && (
                 <View style={{ display: "flex", alignItems: "center" }}>
-                  <MaterialIcons name="camera-alt" size={75} color="white" />
-                  <Text style={{ color: "white" }}>Pick an Image</Text>
+                  <Entypo name="images" size={75} color="white" />
+                  <Text style={{ color: "white", marginTop: 10 }}>
+                    Pick an Image
+                  </Text>
                 </View>
               )}
               {image && (
@@ -397,6 +401,7 @@ export default function App() {
                 alignSelf: "center",
                 marginTop: 30,
                 padding: 20,
+                marginBottom: 90,
               }}
             >
               <View
@@ -429,6 +434,9 @@ export default function App() {
             </ScrollView>
           )}
           {/* end */}
+          <View style={{ width: "85%", alignSelf: "center" }}>
+            <Navbar />
+          </View>
         </ScrollView>
       </ImageBackground>
     </View>

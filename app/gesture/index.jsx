@@ -15,6 +15,7 @@ import {
 import { router } from "expo-router";
 import GradientText from "../../utilities/GradientText";
 import GradientButton from "../../utilities/GradientButton";
+import Navbar from "../../utilities/Navbar";
 import * as ImagePicker from "expo-image-picker";
 import * as Clipboard from "expo-clipboard";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -333,7 +334,7 @@ export default function App() {
                 margin: 12,
                 width: "90%",
                 borderColor: "white",
-                height: !output ? 500 : 300,
+                height: !output ? 455 : 300,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -429,6 +430,9 @@ export default function App() {
             </ScrollView>
           )}
           {/* end */}
+          <View style={{ width: "85%", alignSelf: "center" }}>
+            <Navbar />
+          </View>
         </ScrollView>
       </ImageBackground>
     </View>

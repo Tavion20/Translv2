@@ -7,15 +7,35 @@ import {
   ImageBackground,
   ScrollView,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { Link, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { AntDesign } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import GradientText from "../utilities/GradientText";
+import Navbar from "../utilities/Navbar";
 import bg from "../assets/bg.png";
 
 const Col = ({ children }) => <View style={styles.col}>{children}</View>;
 const Row = ({ numCols, children }) => {
-  return <View style={styles[`h${numCols}`]}>{children}</View>;
+  return (
+    <View
+      style={[
+        styles[`h${numCols}`],
+        {
+          display: "flex",
+          alignContent: "center",
+          alignItems: "center",
+        },
+      ]}
+    >
+      {children}
+    </View>
+  );
 };
 
 export default function App() {
@@ -31,7 +51,7 @@ export default function App() {
               alignItems: "center",
             }}
           >
-            <Pressable onPress={() => router.push("test/")}>
+            {/* <Pressable onPress={() => router.push("test/")}>
               <GradientText
                 text="Transl"
                 styles={{
@@ -40,7 +60,15 @@ export default function App() {
                   paddingVertical: 20,
                 }}
               />
-            </Pressable>
+            </Pressable> */}
+            <GradientText
+              text="Transl"
+              styles={{
+                fontSize: 42,
+                fontWeight: "bold",
+                paddingVertical: 20,
+              }}
+            />
           </View>
           {/* ends */}
 
@@ -71,8 +99,25 @@ export default function App() {
                   <Image
                     source={require("../assets/HomePage/text1.png")}
                     contentFit="cover"
-                    style={styles.image}
+                    style={[
+                      styles.image,
+                      {
+                        opacity: 0.2,
+                        borderColor: "white",
+                      },
+                    ]}
                   />
+                  <Text
+                    style={{
+                      position: "absolute",
+                      fontSize: 36,
+                      fontWeight: "900",
+                      marginTop: 50,
+                      color: "#fff7ea",
+                    }}
+                  >
+                    Text
+                  </Text>
                 </Row>
               </Pressable>
               <Pressable onPress={() => router.push("/image/")}>
@@ -80,8 +125,19 @@ export default function App() {
                   <Image
                     source={require("../assets/HomePage/img.png")}
                     contentFit="cover"
-                    style={styles.image}
+                    style={[styles.image, { opacity: 0.2 }]}
                   />
+                  <Text
+                    style={{
+                      position: "absolute",
+                      fontSize: 36,
+                      fontWeight: "900",
+                      marginTop: 45,
+                      color: "#fff7ea",
+                    }}
+                  >
+                    Image
+                  </Text>
                 </Row>
               </Pressable>
               <Pressable onPress={() => router.push("/file/")}>
@@ -89,8 +145,19 @@ export default function App() {
                   <Image
                     source={require("../assets/HomePage/file.png")}
                     contentFit="cover"
-                    style={styles.image}
+                    style={[styles.image, { opacity: 0.2 }]}
                   />
+                  <Text
+                    style={{
+                      position: "absolute",
+                      fontSize: 36,
+                      fontWeight: "900",
+                      marginTop: 50,
+                      color: "#fff7ea",
+                    }}
+                  >
+                    File
+                  </Text>
                 </Row>
               </Pressable>
             </Col>
@@ -101,8 +168,19 @@ export default function App() {
                   <Image
                     source={require("../assets/HomePage/braille1.png")}
                     contentFit="cover"
-                    style={styles.image}
+                    style={[styles.image, { opacity: 0.2 }]}
                   />
+                  <Text
+                    style={{
+                      position: "absolute",
+                      fontSize: 36,
+                      fontWeight: "900",
+                      marginTop: 50,
+                      color: "#fff7ea",
+                    }}
+                  >
+                    Braille
+                  </Text>
                 </Row>
               </Pressable>
               <Pressable onPress={() => router.push("/audio/")}>
@@ -110,9 +188,21 @@ export default function App() {
                   <Image
                     source={require("../assets/HomePage/audio1.png")}
                     contentFit="cover"
-                    style={styles.image}
+                    style={[styles.image, { opacity: 0.2 }]}
                   />
                 </Row>
+                <Text
+                  style={{
+                    position: "absolute",
+                    fontSize: 36,
+                    fontWeight: "900",
+                    marginTop: 45,
+                    color: "#fff7ea",
+                    marginLeft: 36,
+                  }}
+                >
+                  Audio
+                </Text>
               </Pressable>
               {/* this is the gesture */}
               {/* <Pressable onPress={() => router.push("/gesture/")}>
@@ -120,13 +210,26 @@ export default function App() {
                   <Image
                     source={require("../assets/HomePage/gesture.png")}
                     contentFit="cover"
-                    style={[styles.image, { opacity: 1 }]}
+                   style={[styles.image, { opacity: 0.3 }]}
                   />
                 </Row>
+                <Text
+                    style={{
+                      position: "absolute",
+                      fontSize: 36,
+                      fontWeight: "900",
+                      marginTop: 50,
+                      color: "#fff7ea",
+                    }}
+                  >
+                    TEXT
+                  </Text>
               </Pressable> */}
             </Col>
           </View>
           {/* end */}
+
+          <Navbar />
         </ScrollView>
       </ImageBackground>
       <StatusBar hidden />
