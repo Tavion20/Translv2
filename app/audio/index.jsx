@@ -32,6 +32,8 @@ export default function App() {
   const [copiedText, setCopiedText] = useState("");
   const [firstLang, setFirstLang] = useState("en");
   const [secondLang, setSecondLang] = useState("hi");
+  const [firstLang, setFirstLang] = useState("en");
+  const [secondLang, setSecondLang] = useState("hi");
   const [openLangDialog, setOpenLangDialog] = useState(false);
   const [openLangDialog2, setOpenLangDialog2] = useState(false);
   const lang = ["as", "bn", "gu", "hi", "kn", "ml", "mr", "or", "en"];
