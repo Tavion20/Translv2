@@ -25,11 +25,12 @@ export default function App() {
   const [output, setOutput] = useState(null);
   const [translate, setTranslate] = useState(""); //change this for new feature
   //   const [copiedText, setCopiedText] = useState("");
-  const [firstLang, setFirstLang] = useState("English");
-  const [secondLang, setSecondLang] = useState("Hindi");
+  const [loading, setLoading] = useState(false);
+  const [firstLang, setFirstLang] = useState("en");
+  const [secondLang, setSecondLang] = useState("hi");
   const [openLangDialog, setOpenLangDialog] = useState(false);
   const [openLangDialog2, setOpenLangDialog2] = useState(false);
-  const lang = ["English", "Hindi", "Marathi", "Gujrati"];
+  const lang = ["as", "bn", "gu", "hi", "kn", "ml", "mr", "or", "en"];
 
   const handleSelect1 = (item) => {
     setFirstLang(item);
@@ -59,6 +60,7 @@ export default function App() {
   // Function to translate text only
   const texttranslate = async () => {
     try {
+      setLoading(true);
       console.log("Sending....");
       console.log(`Input string: ${translate}`);
       const response = await fetch(
@@ -69,8 +71,8 @@ export default function App() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            fromLang: "en",
-            toLang: "hi",
+            fromLang: firstLang,
+            toLang: secondLang,
             inputText: translate,
           }),
         }
@@ -83,6 +85,7 @@ export default function App() {
       const translatedText = await response.json();
       console.log(translatedText);
 
+      setLoading(false);
       setOutput(translatedText.translatedText);
     } catch (error) {
       console.error("Error:", error.message);
@@ -327,36 +330,55 @@ export default function App() {
           {/* end */}
 
           {/* Translate Button */}
-
-          <View
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginTop: 20,
-            }}
-          >
-            <Pressable
-              onPress={texttranslate}
+          {!loading ? (
+            <View
               style={{
                 display: "flex",
                 alignItems: "center",
-                width: 130,
+                marginTop: 20,
               }}
             >
-              <GradientButton
-                text="Translate"
-                styles={{
-                  fontSize: 23,
-                  fontWeight: "bold",
-                  color: "white",
+              <TouchableOpacity
+                onPress={texttranslate}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  width: 130,
                 }}
-                height={60}
-                borderRadius={10}
-              />
-            </Pressable>
-          </View>
-
+              >
+                <GradientButton
+                  text="Translate"
+                  styles={{
+                    fontSize: 23,
+                    fontWeight: "bold",
+                    color: "white",
+                  }}
+                  height={60}
+                  borderRadius={10}
+                />
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginTop: 20,
+              }}
+            >
+              <Pressable
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  width: 130,
+                }}
+              >
+                <GradientButton text="loading" height={60} borderRadius={10} />
+              </Pressable>
+            </View>
+          )}
           {/* end */}
+
           {!output && <View style={{ height: 157 }}></View>}
           {/* Hidden Output Container */}
           {output && (

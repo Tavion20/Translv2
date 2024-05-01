@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text, View, ActivityIndicator } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 const GradientButton = ({ text, styles, width, height, borderRadius }) => {
@@ -19,9 +19,20 @@ const GradientButton = ({ text, styles, width, height, borderRadius }) => {
         { width, height, borderRadius },
       ]}
     >
-      <Text style={[styles, { textAlign: "center", paddingHorizontal: 13 }]}>
-        {text}
-      </Text>
+      {text === "loading" ? (
+        <View
+          style={[
+            styles,
+            { textAlign: "center", paddingHorizontal: 13, width: 130 },
+          ]}
+        >
+          <ActivityIndicator size="large" color="#fff" />
+        </View>
+      ) : (
+        <Text style={[styles, { textAlign: "center", paddingHorizontal: 13 }]}>
+          {text}
+        </Text>
+      )}
     </LinearGradient>
   );
 };

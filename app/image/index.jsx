@@ -29,11 +29,13 @@ export default function App() {
   const [output, setOutput] = useState(null);
   const [image, setImage] = useState(null);
   const [copiedText, setCopiedText] = useState("");
-  const [firstLang, setFirstLang] = useState("English");
-  const [secondLang, setSecondLang] = useState("Hindi");
+  const [loading, setLoading] = useState(false);
+  const [firstLang, setFirstLang] = useState("en");
+  const [secondLang, setSecondLang] = useState("hi");
   const [openLangDialog, setOpenLangDialog] = useState(false);
   const [openLangDialog2, setOpenLangDialog2] = useState(false);
-  const lang = ["English", "Hindi", "Marathi", "Gujrati"];
+  const lang = ["as", "bn", "gu", "hi", "kn", "ml", "mr", "or", "en"];
+
   const handleSelect1 = (item) => {
     setFirstLang(item);
     setOpenLangDialog(false);
@@ -78,15 +80,17 @@ export default function App() {
 
   const translateImage = async () => {
     console.log("Image Translate started..");
+    setLoading(true);
     try {
       const formData = new FormData();
       formData.append("img", {
         uri: image.uri,
         name: "image.jpg",
         type: image.mimeType,
-        source: "english",
-        target: "hindi",
       });
+      formData.append("source", firstLang);
+      formData.append("target", secondLang);
+
       console.log(formData._parts);
       const response = await fetch(
         "https://transl-backend-0tra.onrender.com/fileimg",
@@ -106,6 +110,7 @@ export default function App() {
       const translatedFileBlob = await response.json();
 
       console.log(translatedFileBlob);
+      setLoading(false);
       setOutput(translatedFileBlob.translatedText);
     } catch (error) {
       console.error("Error:", error.message);
@@ -359,8 +364,9 @@ export default function App() {
             </View>
           </TouchableHighlight>
           {/* end */}
+
           {/* Translate Button */}
-          {!output && (
+          {!loading ? (
             <View
               style={{
                 display: "flex",
@@ -368,7 +374,7 @@ export default function App() {
                 marginTop: 20,
               }}
             >
-              <Pressable
+              <TouchableOpacity
                 onPress={translateImage}
                 style={{
                   display: "flex",
@@ -386,6 +392,24 @@ export default function App() {
                   height={60}
                   borderRadius={10}
                 />
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginTop: 20,
+              }}
+            >
+              <Pressable
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  width: 130,
+                }}
+              >
+                <GradientButton text="loading" height={60} borderRadius={10} />
               </Pressable>
             </View>
           )}
@@ -401,7 +425,7 @@ export default function App() {
                 alignSelf: "center",
                 marginTop: 30,
                 padding: 20,
-                marginBottom: 90,
+                marginBottom: 15,
               }}
             >
               <View
