@@ -9,20 +9,15 @@ import {
   Pressable,
   TouchableHighlight,
   TouchableOpacity,
-  Button,
-  Image,
 } from "react-native";
 import { router } from "expo-router";
 import GradientText from "../../utilities/GradientText";
 import GradientButton from "../../utilities/GradientButton";
 import Navbar from "../../utilities/Navbar";
 import * as DocumentPicker from "expo-document-picker";
-import * as ImagePicker from "expo-image-picker";
 import * as Clipboard from "expo-clipboard";
 import { MaterialIcons } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { FontAwesome6 } from "@expo/vector-icons";
 
 import bg from "../../assets/bg.png";
 
@@ -403,13 +398,14 @@ export default function App() {
           {output && (
             <ScrollView
               style={{
-                backgroundColor: "#00000080",
                 borderRadius: 10,
+                marginTop: 25,
+                backgroundColor: "#00000080",
                 width: "90%",
                 alignSelf: "center",
-                marginTop: 30,
                 padding: 20,
-                marginBottom: 80,
+                height: 200,
+                marginBottom: 25,
               }}
             >
               <View
@@ -417,7 +413,6 @@ export default function App() {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  alignItems: "center",
                 }}
               >
                 <GradientText
@@ -436,7 +431,15 @@ export default function App() {
                   />
                 </TouchableOpacity>
               </View>
-              <Text style={{ color: "white", marginTop: 20, fontSize: 16 }}>
+              <Text
+                style={{
+                  color: "#FFEBCA",
+                  marginTop: 20,
+                  fontSize: 16,
+                  lineHeight: 30,
+                  paddingBottom: 40,
+                }}
+              >
                 {output}
               </Text>
             </ScrollView>

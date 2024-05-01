@@ -1,6 +1,5 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { Buffer } from "buffer";
 import {
   StyleSheet,
   View,
@@ -10,7 +9,6 @@ import {
   Pressable,
   TouchableHighlight,
   TouchableOpacity,
-  Button,
   Image,
 } from "react-native";
 import { router } from "expo-router";
@@ -18,37 +16,20 @@ import GradientText from "../../utilities/GradientText";
 import GradientButton from "../../utilities/GradientButton";
 import * as ImagePicker from "expo-image-picker";
 import * as Clipboard from "expo-clipboard";
-import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Navbar from "../../utilities/Navbar";
 import bg from "../../assets/bg.png";
 
 export default function App() {
   const [output, setOutput] = useState(null);
   const [image, setImage] = useState(null);
-  const [copiedText, setCopiedText] = useState("");
-  const [firstLang, setFirstLang] = useState("English");
-  const [secondLang, setSecondLang] = useState("Hindi");
-  const [openLangDialog, setOpenLangDialog] = useState(false);
-  const [openLangDialog2, setOpenLangDialog2] = useState(false);
+  // const [copiedText, setCopiedText] = useState("");
   const [loading, setLoading] = useState(false);
-  const lang = ["English", "Hindi", "Marathi", "Gujrati"];
-
-  const handleSelect1 = (item) => {
-    setFirstLang(item);
-    setOpenLangDialog(false);
-  };
-
-  const handleSelect2 = (item) => {
-    setSecondLang(item);
-    setOpenLangDialog2(false);
-  };
 
   //Function to use Clipboard
-  const copyToClipboard = async () => {
-    await Clipboard.setStringAsync(output);
-  };
+  // const copyToClipboard = async () => {
+  //   await Clipboard.setStringAsync(output);
+  // };
 
   // if you wanna put the copied text someplace
   /*

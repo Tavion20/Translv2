@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
+
 import { router } from "expo-router";
 import GradientText from "../../utilities/GradientText";
 import GradientButton from "../../utilities/GradientButton";
@@ -399,7 +400,6 @@ export default function App() {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  alignItems: "center",
                 }}
               >
                 <GradientText
@@ -424,6 +424,7 @@ export default function App() {
                   marginTop: 20,
                   fontSize: 18,
                   lineHeight: 30,
+                  paddingBottom: 40,
                 }}
               >
                 {output}

@@ -327,7 +327,7 @@ export default function App() {
                 margin: 12,
                 width: "90%",
                 borderColor: "white",
-                height: !output ? 455 : 200,
+                height: !output ? 455 : 260,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -345,7 +345,7 @@ export default function App() {
               {image && (
                 <Image
                   source={{ uri: image.uri }}
-                  style={{ width: 190, height: 140, borderRadius: 10 }}
+                  style={{ width: 320, height: 240, borderRadius: 10 }}
                 />
               )}
             </View>
@@ -406,13 +406,14 @@ export default function App() {
           {output && (
             <ScrollView
               style={{
-                backgroundColor: "#00000080",
                 borderRadius: 10,
+                marginTop: 25,
+                backgroundColor: "#00000080",
                 width: "90%",
                 alignSelf: "center",
-                marginTop: 30,
                 padding: 20,
-                marginBottom: 75,
+                height: 150,
+                marginBottom: 20,
               }}
             >
               <View
@@ -420,7 +421,6 @@ export default function App() {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  alignItems: "center",
                 }}
               >
                 <GradientText
@@ -439,7 +439,15 @@ export default function App() {
                   />
                 </TouchableOpacity>
               </View>
-              <Text style={{ color: "white", marginTop: 20, fontSize: 16 }}>
+              <Text
+                style={{
+                  color: "#FFEBCA",
+                  marginTop: 20,
+                  fontSize: 16,
+                  lineHeight: 30,
+                  paddingBottom: 40,
+                }}
+              >
                 {output}
               </Text>
             </ScrollView>
