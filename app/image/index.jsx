@@ -29,11 +29,11 @@ export default function App() {
   const [output, setOutput] = useState(null);
   const [image, setImage] = useState(null);
   const [copiedText, setCopiedText] = useState("");
-  const [firstLang, setFirstLang] = useState("English");
-  const [secondLang, setSecondLang] = useState("Hindi");
+  const [firstLang, setFirstLang] = useState("en");
+  const [secondLang, setSecondLang] = useState("hi");
   const [openLangDialog, setOpenLangDialog] = useState(false);
   const [openLangDialog2, setOpenLangDialog2] = useState(false);
-  const lang = ["English", "Hindi", "Marathi", "Gujrati"];
+  const lang =  ["as", "bn", "gu", "hi", "kn", "ml" ,"mr","or","en"];
   const handleSelect1 = (item) => {
     setFirstLang(item);
     setOpenLangDialog(false);
@@ -84,9 +84,9 @@ export default function App() {
         uri: image.uri,
         name: "image.jpg",
         type: image.mimeType,
-        source: "english",
-        target: "hindi",
       });
+      formData.append('source', firstLang);
+      formData.append('target', secondLang);
       console.log(formData._parts);
       const response = await fetch(
         "https://transl-backend-0tra.onrender.com/fileimg",

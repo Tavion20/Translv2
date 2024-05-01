@@ -58,6 +58,8 @@ export default function App() {
         source: "english",
         target: "hindi",
       });
+      formData.append('source', 'english');
+      formData.append('target', 'hindi');
       console.log(formData);
       const response = await fetch(
         "https://transl-backend-0tra.onrender.com/filetranslate",

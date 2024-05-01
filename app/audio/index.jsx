@@ -30,11 +30,11 @@ export default function App() {
   const [output, setOutput] = useState(null);
   const [fileUri, setFileUri] = useState(null);
   const [copiedText, setCopiedText] = useState("");
-  const [firstLang, setFirstLang] = useState("English");
-  const [secondLang, setSecondLang] = useState("Hindi");
+  const [firstLang, setFirstLang] = useState("en");
+  const [secondLang, setSecondLang] = useState("hi");
   const [openLangDialog, setOpenLangDialog] = useState(false);
   const [openLangDialog2, setOpenLangDialog2] = useState(false);
-  const lang = ["English", "Hindi", "Marathi", "Gujrati"];
+  const lang =  ["as", "bn", "gu", "hi", "kn", "ml" ,"mr","or","en"];
 
   const handleSelect1 = (item) => {
     setFirstLang(item);
@@ -75,9 +75,9 @@ export default function App() {
         uri: fileUri.uri,
         name: fileUri.name,
         type: fileUri.mimeType,
-        source: "english",
-        target: "hindi",
       });
+      formData.append('source', firstLang);
+      formData.append('target', secondLang);
       console.log(formData);
       const response = await fetch(
         "https://transl-backend-0tra.onrender.com/fileaudio",
