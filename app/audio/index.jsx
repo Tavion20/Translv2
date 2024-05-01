@@ -30,8 +30,7 @@ export default function App() {
   const [output, setOutput] = useState(null);
   const [fileUri, setFileUri] = useState(null);
   const [copiedText, setCopiedText] = useState("");
-  const [firstLang, setFirstLang] = useState("en");
-  const [secondLang, setSecondLang] = useState("hi");
+  const [loading, setLoading] = useState(false);
   const [firstLang, setFirstLang] = useState("en");
   const [secondLang, setSecondLang] = useState("hi");
   const [openLangDialog, setOpenLangDialog] = useState(false);
@@ -147,9 +146,7 @@ export default function App() {
           >
             {/* First Lang Box */}
             <View>
-              <TouchableHighlight
-                onPress={() => setOpenLangDialog(!openLangDialog)}
-              >
+              <TouchableHighlight>
                 <View
                   style={{
                     display: "flex",
@@ -172,12 +169,12 @@ export default function App() {
                   >
                     {firstLang}
                   </Text>
-                  <MaterialIcons
+                  {/* <MaterialIcons
                     name={!openLangDialog ? "arrow-drop-down" : "arrow-drop-up"}
                     size={24}
                     color="#FFEBCA"
                     style={{ width: 25 }}
-                  />
+                  /> */}
                 </View>
               </TouchableHighlight>
               {openLangDialog && (
@@ -222,20 +219,9 @@ export default function App() {
               )}
             </View>
 
-            <TouchableOpacity
-              onPress={() => {
-                setFirstLang(secondLang);
-                setSecondLang(firstLang);
-              }}
-            >
-              <View>
-                <MaterialCommunityIcons
-                  name="swap-horizontal"
-                  size={35}
-                  color="#FFEBCA"
-                />
-              </View>
-            </TouchableOpacity>
+            <View>
+              <AntDesign name="arrowright" size={25} color="#FFEBCA" />
+            </View>
 
             {/* Second Lang Box */}
             <View>
@@ -329,7 +315,7 @@ export default function App() {
                 margin: 12,
                 width: "90%",
                 borderColor: "white",
-                height: !output ? 455 : 300,
+                height: !output ? 455 : 207,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -353,9 +339,9 @@ export default function App() {
                   <MaterialIcons
                     name="file-download-done"
                     size={75}
-                    color="white"
+                    color="grey"
                   />
-                  <Text style={{ color: "white", marginTop: 10 }}>
+                  <Text style={{ color: "grey", marginTop: 10 }}>
                     Audio Selected..
                   </Text>
                 </View>
@@ -423,6 +409,7 @@ export default function App() {
                 alignSelf: "center",
                 marginTop: 30,
                 padding: 20,
+                marginBottom: 80,
               }}
             >
               <View

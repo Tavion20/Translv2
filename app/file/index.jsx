@@ -9,8 +9,6 @@ import {
   Pressable,
   TouchableHighlight,
   TouchableOpacity,
-  Button,
-  Image,
 } from "react-native";
 import { router } from "expo-router";
 import GradientText from "../../utilities/GradientText";
@@ -29,8 +27,7 @@ export default function App() {
   const [output, setOutput] = useState(null);
   const [fileUri, setFileUri] = useState(null);
   const [copiedText, setCopiedText] = useState("");
-  const [firstLang, setFirstLang] = useState("en");
-  const [secondLang, setSecondLang] = useState("hi");
+  const [loading, setLoading] = useState(false);
   const [firstLang, setFirstLang] = useState("en");
   const [secondLang, setSecondLang] = useState("hi");
   const [openLangDialog, setOpenLangDialog] = useState(false);
@@ -72,6 +69,7 @@ export default function App() {
   const translateFile = async () => {
     try {
       const formData = new FormData();
+      setLoading(true);
       formData.append("file", {
         uri: fileUri.uri,
         name: fileUri.name,
@@ -97,7 +95,7 @@ export default function App() {
       }
 
       const translatedFileBlob = await response.json();
-
+      setLoading(false);
       setOutput(translatedFileBlob.translatedText);
     } catch (error) {
       console.error("Error:", error.message);
@@ -145,9 +143,7 @@ export default function App() {
           >
             {/* First Lang Box */}
             <View>
-              <TouchableHighlight
-                onPress={() => setOpenLangDialog(!openLangDialog)}
-              >
+              <TouchableHighlight>
                 <View
                   style={{
                     display: "flex",
@@ -170,12 +166,12 @@ export default function App() {
                   >
                     {firstLang}
                   </Text>
-                  <MaterialIcons
+                  {/* <MaterialIcons
                     name={!openLangDialog ? "arrow-drop-down" : "arrow-drop-up"}
                     size={24}
                     color="#FFEBCA"
                     style={{ width: 25 }}
-                  />
+                  /> */}
                 </View>
               </TouchableHighlight>
               {openLangDialog && (
@@ -220,20 +216,9 @@ export default function App() {
               )}
             </View>
 
-            <TouchableOpacity
-              onPress={() => {
-                setFirstLang(secondLang);
-                setSecondLang(firstLang);
-              }}
-            >
-              <View>
-                <MaterialCommunityIcons
-                  name="swap-horizontal"
-                  size={35}
-                  color="#FFEBCA"
-                />
-              </View>
-            </TouchableOpacity>
+            <View>
+              <AntDesign name="arrowright" size={25} color="#FFEBCA" />
+            </View>
 
             {/* Second Lang Box */}
             <View>
@@ -327,7 +312,7 @@ export default function App() {
                 margin: 12,
                 width: "90%",
                 borderColor: "white",
-                height: !output ? 455 : 300,
+                height: !output ? 455 : 207,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -347,9 +332,9 @@ export default function App() {
                   <MaterialIcons
                     name="file-download-done"
                     size={75}
-                    color="white"
+                    color="grey"
                   />
-                  <Text style={{ color: "white", marginTop: 10 }}>
+                  <Text style={{ color: "grey", marginTop: 10 }}>
                     File Selected..
                   </Text>
                 </View>
@@ -358,7 +343,7 @@ export default function App() {
           </TouchableHighlight>
           {/* end */}
           {/* Translate Button */}
-          {!output && (
+          {!loading ? (
             <View
               style={{
                 display: "flex",
@@ -366,7 +351,7 @@ export default function App() {
                 marginTop: 20,
               }}
             >
-              <Pressable
+              <TouchableOpacity
                 onPress={translateFile}
                 style={{
                   display: "flex",
@@ -384,6 +369,24 @@ export default function App() {
                   height={60}
                   borderRadius={10}
                 />
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginTop: 20,
+              }}
+            >
+              <Pressable
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  width: 130,
+                }}
+              >
+                <GradientButton text="loading" height={60} borderRadius={10} />
               </Pressable>
             </View>
           )}

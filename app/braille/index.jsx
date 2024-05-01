@@ -130,323 +130,139 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar hidden />
       <ImageBackground source={bg} style={styles.image}>
-        <ScrollView
-          style={{
-            display: "flex",
-            alignContent: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          {/* Container that contains Title, Image area */}
-          <View>
-            {/* The title */}
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                marginTop: 20,
-              }}
-            >
-              <Pressable onPress={() => router.push("/")}>
-                <GradientText
-                  text="Braille"
-                  styles={{
-                    fontSize: 42,
-                    fontWeight: "bold",
-                    padding: 20,
-                  }}
-                />
-              </Pressable>
-            </View>
-            {/* ends */}
-
-            {/* The Change the Language button group */}
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                gap: 15,
-                alignItems: "center",
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              {/* First Lang Box */}
-              <View>
-                <TouchableHighlight
-                  onPress={() => setOpenLangDialog(!openLangDialog)}
-                >
-                  <View
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      backgroundColor: "#111111",
-                      padding: 10,
-                      justifyContent: "space-between",
-                      borderRadius: 8,
-                      width: 125,
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: "#FEB584",
-                        fontSize: 18,
-                        display: "flex",
-                        flexDirection: "column",
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      {firstLang}
-                    </Text>
-                    <MaterialIcons
-                      name={
-                        !openLangDialog ? "arrow-drop-down" : "arrow-drop-up"
-                      }
-                      size={24}
-                      color="#FFEBCA"
-                      style={{ width: 25 }}
-                    />
-                  </View>
-                </TouchableHighlight>
-                {openLangDialog && (
-                  <View
-                    style={{
-                      position: "absolute",
-                      backgroundColor: "#111111",
-                      borderRadius: 8,
-                      padding: 10,
-                      marginTop: 50,
-                      shadowColor: "#000",
-                      shadowOffset: { width: 0, height: 2 },
-                      shadowOpacity: 0.25,
-                      shadowRadius: 4,
-                      zIndex: 10,
-                    }}
-                  >
-                    {lang.map((item) => {
-                      if (item != secondLang) {
-                        return (
-                          <TouchableHighlight
-                            key={item}
-                            underlayColor={"#FFEBCA"}
-                            onPress={() => handleSelect1(item)}
-                          >
-                            <View style={{ paddingVertical: 5 }}>
-                              <Text
-                                style={{
-                                  color: "#FEB584",
-                                  fontSize: 18,
-                                  width: 105,
-                                }}
-                              >
-                                {item}
-                              </Text>
-                            </View>
-                          </TouchableHighlight>
-                        );
-                      }
-                    })}
-                  </View>
-                )}
-              </View>
-
-              <TouchableOpacity
-                onPress={() => {
-                  setFirstLang(secondLang);
-                  setSecondLang(firstLang);
-                }}
-              >
-                <View>
-                  <MaterialCommunityIcons
-                    name="swap-horizontal"
-                    size={35}
-                    color="#FFEBCA"
-                  />
-                </View>
-              </TouchableOpacity>
-
-              {/* Second Lang Box */}
-              <View>
-                <TouchableHighlight
-                  onPress={() => setOpenLangDialog2(!openLangDialog2)}
-                >
-                  <View
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      backgroundColor: "#111111",
-                      padding: 10,
-                      justifyContent: "space-between",
-                      borderRadius: 8,
-                      width: 125,
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: "#FEB584",
-                        fontSize: 18,
-                        display: "flex",
-                        flexDirection: "column",
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      {secondLang}
-                    </Text>
-                    <MaterialIcons
-                      name={
-                        !openLangDialog2 ? "arrow-drop-down" : "arrow-drop-up"
-                      }
-                      size={24}
-                      color="#FFEBCA"
-                      style={{ width: 25 }}
-                    />
-                  </View>
-                </TouchableHighlight>
-                {openLangDialog2 && (
-                  <View
-                    style={{
-                      position: "absolute",
-                      backgroundColor: "#111111",
-                      borderRadius: 8,
-                      padding: 10,
-                      marginTop: 50,
-                      shadowColor: "#000",
-                      shadowOffset: { width: 0, height: 2 },
-                      shadowOpacity: 0.25,
-                      shadowRadius: 4,
-                      zIndex: 10,
-                    }}
-                  >
-                    {lang.map((item) => {
-                      if (item != firstLang) {
-                        return (
-                          <TouchableHighlight
-                            key={item}
-                            underlayColor={"#FFEBCA"}
-                            onPress={() => handleSelect2(item)}
-                          >
-                            <View style={{ paddingVertical: 5 }}>
-                              <Text
-                                style={{
-                                  color: "#FEB584",
-                                  fontSize: 18,
-                                  width: 105,
-                                }}
-                              >
-                                {item}
-                              </Text>
-                            </View>
-                          </TouchableHighlight>
-                        );
-                      }
-                    })}
-                  </View>
-                )}
-              </View>
-            </View>
-            {/* end */}
-
-            {/* The Image upload container */}
-            <TouchableHighlight
-              onPress={pickImage}
-              style={{ display: "flex", alignItems: "center", marginTop: 20 }}
-            >
-              <View
-                style={{
-                  backgroundColor: "#000000BF",
-                  margin: 12,
-                  width: "90%",
-                  borderColor: "white",
-                  height: 455,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 10,
-                }}
-              >
-                {!image && (
-                  <View style={{ display: "flex", alignItems: "center" }}>
-                    <FontAwesome5 name="braille" size={65} color="white" />
-                    <Text style={{ color: "white", marginTop: 10 }}>
-                      Pick Braille Image
-                    </Text>
-                  </View>
-                )}
-                {image && output == null && (
-                  <Image
-                    source={{ uri: image.uri }}
-                    style={{ width: 320, height: 240, borderRadius: 10 }}
-                  />
-                )}
-                {output != null && (
-                  <Image
-                    source={{ uri: output }}
-                    style={{ width: 320, height: 240, borderRadius: 10 }}
-                  />
-                )}
-              </View>
-            </TouchableHighlight>
-            {output && <View style={{ height: 77 }}></View>}
-            {/* end */}
-          </View>
-          {/* Container that contains Button & Navbar */}
-          <View>
-            {/* Translate Button */}
-            {!loading ? (
+        <ScrollView>
+          <View
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              flexDirection: "column",
+            }}
+          >
+            {/* Container that contains Title, Image area */}
+            <View>
+              {/* The title */}
               <View
                 style={{
                   display: "flex",
+                  flexDirection: "row",
                   alignItems: "center",
-                  marginTop: 20,
+                  marginTop: 30,
                 }}
               >
-                <TouchableOpacity
-                  onPress={translateBraille}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    width: 130,
-                  }}
-                >
-                  <GradientButton
-                    text="Translate"
+                <Pressable onPress={() => router.push("/")}>
+                  <GradientText
+                    text="Braille"
                     styles={{
-                      fontSize: 23,
+                      fontSize: 42,
                       fontWeight: "bold",
-                      color: "white",
+                      padding: 20,
                     }}
-                    height={60}
-                    borderRadius={10}
-                  />
-                </TouchableOpacity>
-              </View>
-            ) : (
-              <View
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: 20,
-                }}
-              >
-                <Pressable
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    width: 130,
-                  }}
-                >
-                  <GradientButton
-                    text="loading"
-                    height={60}
-                    borderRadius={10}
                   />
                 </Pressable>
               </View>
-            )}
-            {/* end */}
+              {/* ends */}
 
-            {/* {output != null && (
+              {/* The Image upload container */}
+              <TouchableHighlight
+                onPress={pickImage}
+                style={{ display: "flex", alignItems: "center", marginTop: 20 }}
+              >
+                <View
+                  style={{
+                    backgroundColor: "#000000BF",
+                    margin: 12,
+                    width: "90%",
+                    borderColor: "white",
+                    height: 455,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 10,
+                  }}
+                >
+                  {!image && (
+                    <View style={{ display: "flex", alignItems: "center" }}>
+                      <FontAwesome5 name="braille" size={65} color="white" />
+                      <Text style={{ color: "white", marginTop: 10 }}>
+                        Pick Braille Image
+                      </Text>
+                    </View>
+                  )}
+                  {image && output == null && (
+                    <Image
+                      source={{ uri: image.uri }}
+                      style={{ width: 320, height: 240, borderRadius: 10 }}
+                    />
+                  )}
+                  {output != null && (
+                    <Image
+                      source={{ uri: output }}
+                      style={{ width: 320, height: 240, borderRadius: 10 }}
+                    />
+                  )}
+                </View>
+              </TouchableHighlight>
+
+              {/* end */}
+            </View>
+
+            {/* Container that contains Button & Navbar */}
+            <View>
+              {/* Translate Button */}
+              {!loading ? (
+                <View
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: 64,
+                  }}
+                >
+                  <TouchableOpacity
+                    onPress={translateBraille}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      width: 130,
+                    }}
+                  >
+                    <GradientButton
+                      text="Translate"
+                      styles={{
+                        fontSize: 23,
+                        fontWeight: "bold",
+                        color: "white",
+                      }}
+                      height={60}
+                      borderRadius={10}
+                    />
+                  </TouchableOpacity>
+                </View>
+              ) : (
+                <View
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: 64,
+                  }}
+                >
+                  <Pressable
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      width: 130,
+                    }}
+                  >
+                    <GradientButton
+                      text="loading"
+                      height={60}
+                      borderRadius={10}
+                    />
+                  </Pressable>
+                </View>
+              )}
+              {/* end */}
+
+              {/* {output != null && (
             <View
               style={{
                 display: "flex",
@@ -458,9 +274,9 @@ export default function App() {
             </View>
           )} */}
 
-            {/* end */}
-            {/* Hidden Output Container */}
-            {/* {output && (
+              {/* end */}
+              {/* Hidden Output Container */}
+              {/* {output && (
             <ScrollView
               style={{
                 backgroundColor: "#00000080",
@@ -500,9 +316,10 @@ export default function App() {
               </Text>
             </ScrollView>
           )} */}
-            {/* end */}
-            <View style={{ width: "85%", alignSelf: "center" }}>
-              <Navbar />
+              {/* end */}
+              <View style={{ width: "85%", alignSelf: "center" }}>
+                <Navbar />
+              </View>
             </View>
           </View>
         </ScrollView>
